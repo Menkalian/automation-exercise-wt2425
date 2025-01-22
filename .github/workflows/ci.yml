@@ -20,12 +20,13 @@ jobs:
       - run: pip install pytest coverage
       - name: "Run tests with coverage"
         run: coverage run -m pytest
-      - run: ls -la ; echo $PWD
       - name: "Upload coverage"
         uses: actions/upload-artifact@v4
         with:
           name: test-coverage
           path: .coverage
+          if-no-files-found: error
+          include-hidden-files: true
           retention-days: 1
 
   coverage_report:
